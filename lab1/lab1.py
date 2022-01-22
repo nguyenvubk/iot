@@ -59,8 +59,10 @@ while True:
     light_intensity += 1
     
     g = geocoder.ip('me') #cập nhật vị trí dựa theo địa chỉ ip của thiết bị
-    longitude = g.latlng[0] #g.latlng trả về mảng gồm 2 phần tử: kinh độ và vĩ độ
-    latitude = g.latlng[1]
+    location = g.latlng #g.latlng trả về mảng gồm 2 phần tử: kinh độ và vĩ độ
+    #print(location) # kiểm tra
+    longitude = location[1]
+    latitude = location[0] #gán kết quả
     
     client.publish('v1/devices/me/telemetry', json.dumps(collect_data), 1)
     time.sleep(10)

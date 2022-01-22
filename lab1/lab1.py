@@ -58,8 +58,8 @@ while True:
     humi += 1
     light_intensity += 1
     
-    g = geocoder.ip('me')
-    longitude = g.latlng[0]
+    g = geocoder.ip('me') #cập nhật vị trí dựa theo địa chỉ ip của thiết bị
+    longitude = g.latlng[0] #g.latlng trả về mảng gồm 2 phần tử: kinh độ và vĩ độ
     latitude = g.latlng[1]
     
     client.publish('v1/devices/me/telemetry', json.dumps(collect_data), 1)

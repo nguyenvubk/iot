@@ -52,25 +52,35 @@ def subscribed(client, userdata, mid, granted_qos):
 def recv_message(client, userdata, message):
     print("Received: ", message.payload.decode("utf-8"))
     temp_data = {'value': True}
-    cmd = 0
+    cmd = ''
     #TODO: Update the cmd to control 2 devices
     try:
         jsonobj = json.loads(message.payload)
-        if jsonobj['method'] == "setLED":
+        if jsonobj['method'] == "setLED1":
             temp_data['value'] = jsonobj['params']
             
             client.publish('v1/devices/me/attributes', json.dumps(temp_data), 1)
-            cmd = 1 if  temp_data['value'] else 2
-        if jsonobj['method'] == "setFAN":
+            cmd = '1:1' if  temp_data['value'] else '1:2'
+        elif jsonobj['method'] == "setFAN1":
             temp_data['value'] = jsonobj['params']
             
             client.publish('v1/devices/me/attributes', json.dumps(temp_data), 1)
-            cmd = 3 if  temp_data['value'] else 4
+            cmd = '1:3' if  temp_data['value'] else '1:4'
+        elif jsonobj['method'] == "setLED2":
+            temp_data['value'] = jsonobj['params']
+            
+            client.publish('v1/devices/me/attributes', json.dumps(temp_data), 1)
+            cmd = '1:1' if  temp_data['value'] else '1:2'
+        elif jsonobj['method'] == "setFAN2":
+            temp_data['value'] = jsonobj['params']
+            
+            client.publish('v1/devices/me/attributes', json.dumps(temp_data), 1)
+            cmd = '2:3' if  temp_data['value'] else '2:4'
     except:
         pass
 
     if len(bbc_port) > 0:
-        ser.write((str(cmd) + "#").encode())
+        ser.write((cmd + "#").encode())
 
 def connected(client, usedata, flags, rc):
     if rc == 0:

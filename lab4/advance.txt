@@ -1,0 +1,10 @@
+dashboard:
+https://demo.thingsboard.io/dashboard/4ff27f50-c756-11ec-942a-51543ec1dbaf?publicId=9e2cf5c0-7831-11ec-9ed9-f9294d38ab44
+
+
+main:
+https://makecode.microbit.org/_02vHXPUwf2CH
+sensor1:
+https://makecode.microbit.org/_ETWaiFL7aW0C
+sensor2:
+https://makecode.microbit.org/_76y5fXVoqfjg
